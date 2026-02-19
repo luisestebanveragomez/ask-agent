@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as IndexThreejsBackupRouteImport } from './routes/index-threejs-backup'
+import { Route as ForestStoryRouteImport } from './routes/forest-story'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo/table'
@@ -31,6 +33,16 @@ import { Route as DemoApiAiChatRouteImport } from './routes/demo/api.ai.chat'
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexThreejsBackupRoute = IndexThreejsBackupRouteImport.update({
+  id: '/index-threejs-backup',
+  path: '/index-threejs-backup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForestStoryRoute = ForestStoryRouteImport.update({
+  id: '/forest-story',
+  path: '/forest-story',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -121,6 +133,8 @@ const DemoApiAiChatRoute = DemoApiAiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forest-story': typeof ForestStoryRoute
+  '/index-threejs-backup': typeof IndexThreejsBackupRoute
   '/mcp': typeof McpRoute
   '/api/resume-chat': typeof ApiResumeChatRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
@@ -141,6 +155,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forest-story': typeof ForestStoryRoute
+  '/index-threejs-backup': typeof IndexThreejsBackupRoute
   '/mcp': typeof McpRoute
   '/api/resume-chat': typeof ApiResumeChatRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
@@ -162,6 +178,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/forest-story': typeof ForestStoryRoute
+  '/index-threejs-backup': typeof IndexThreejsBackupRoute
   '/mcp': typeof McpRoute
   '/api/resume-chat': typeof ApiResumeChatRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
@@ -184,6 +202,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/forest-story'
+    | '/index-threejs-backup'
     | '/mcp'
     | '/api/resume-chat'
     | '/demo/ai-chat'
@@ -204,6 +224,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/forest-story'
+    | '/index-threejs-backup'
     | '/mcp'
     | '/api/resume-chat'
     | '/demo/ai-chat'
@@ -224,6 +246,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/forest-story'
+    | '/index-threejs-backup'
     | '/mcp'
     | '/api/resume-chat'
     | '/demo/ai-chat'
@@ -245,6 +269,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForestStoryRoute: typeof ForestStoryRoute
+  IndexThreejsBackupRoute: typeof IndexThreejsBackupRoute
   McpRoute: typeof McpRoute
   ApiResumeChatRoute: typeof ApiResumeChatRoute
   DemoAiChatRoute: typeof DemoAiChatRoute
@@ -271,6 +297,20 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/index-threejs-backup': {
+      id: '/index-threejs-backup'
+      path: '/index-threejs-backup'
+      fullPath: '/index-threejs-backup'
+      preLoaderRoute: typeof IndexThreejsBackupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forest-story': {
+      id: '/forest-story'
+      path: '/forest-story'
+      fullPath: '/forest-story'
+      preLoaderRoute: typeof ForestStoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -397,6 +437,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForestStoryRoute: ForestStoryRoute,
+  IndexThreejsBackupRoute: IndexThreejsBackupRoute,
   McpRoute: McpRoute,
   ApiResumeChatRoute: ApiResumeChatRoute,
   DemoAiChatRoute: DemoAiChatRoute,
